@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文字水流编辑器</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage-panel" aria-label="画布预览">
+        <div class="stage-head">
+          <div>
+            <h1>文字水流编辑器</h1>
+            <p>上传图片或视频，点击画面生成最多两条文字水流。</p>
+          </div>
+          <div class="stage-actions">
+            <button id="downloadPng" type="button">导出 PNG</button>
+            <button id="recordVideo" type="button">录制 WebM</button>
+          </div>
+        </div>
+        <div id="canvasHost" class="canvas-host"></div>
+      </section>
+
+      <aside class="control-panel" aria-label="效果设置">
+        <section class="control-group">
+          <h2>素材</h2>
+          <label class="upload-card">
+            <input id="mediaInput" type="file" accept="image/*,video/*" />
+            <span>上传图片或视频</span>
+            <small>会保留原始色彩，原尺寸按素材画幅显示。</small>
+          </label>
+        </section>
+
+        <section class="control-group compact-grid">
+          <label>
+            画面尺寸
+            <select id="ratioSelect">
+              <option>原尺寸</option>
+              <option>1:1</option>
+              <option>1:2</option>
+              <option>2:1</option>
+              <option>2:3</option>
+              <option>3:2</option>
+              <option>3:4</option>
+              <option>4:3</option>
+              <option>9:16</option>
+              <option>16:9</option>
+            </select>
+          </label>
+
+          <label>
+            画质
+            <select id="qualitySelect">
+              <option>流畅</option>
+              <option selected>标准</option>
+              <option>高清</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="control-group">
+          <h2>水流</h2>
+          <div class="switch-row">
+            <label><input id="showBox" type="checkbox" checked /> 显示选中框</label>
+            <label><input id="showFlow" type="checkbox" checked /> 选中时显示水流</label>
+          </div>
+          <div class="button-row">
+            <button id="deleteFlow" type="button">删除选中</button>
+            <button id="resetFlow" type="button">恢复默认</button>
+          </div>
+        </section>
+
+        <section class="control-group slider-grid">
+          <label>
+            <span>选中框宽度 <b id="boxWValue">170</b></span>
+            <input id="boxW" type="range" min="70" max="320" value="170" />
+          </label>
+          <label>
+            <span>选中框高度 <b id="boxHValue">630</b></span>
+            <input id="boxH" type="range" min="160" max="760" value="630" />
+          </label>
+          <label>
+            <span>最小字号 <b id="fontMinValue">9</b></span>
+            <input id="fontMin" type="range" min="6" max="32" value="9" />
+          </label>
+          <label>
+            <span>最大字号 <b id="fontMaxValue">17</b></span>
+            <input id="fontMax" type="range" min="7" max="42" value="17" />
+          </label>
+          <label>
+            <span>底部堆积宽度 <b id="pileWValue">140</b></span>
+            <input id="pileW" type="range" min="30" max="360" value="140" />
+          </label>
+          <label>
+            <span>堆积高度（上） <b id="pileTopValue">22</b></span>
+            <input id="pileTop" type="range" min="0" max="160" value="22" />
+          </label>
+          <label>
+            <span>堆积高度（下） <b id="pileBottomValue">38</b></span>
+            <input id="pileBottom" type="range" min="0" max="180" value="38" />
+          </label>
+        </section>
+
+        <section class="control-group">
+          <label>
+            水流文字
+            <textarea id="textInput" rows="6">夜里有一盏很小的灯，像没说出口的话，慢慢落进水里。I write your name where the rain becomes quiet. Some words fall, some words shine, some words stay at the bottom of the blue.</textarea>
+          </label>
+        </section>
+      </aside>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
