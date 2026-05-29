@@ -1,0 +1,367 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f3e8;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-solid: #ffffff;
+  --text: #182018;
+  --muted: #637060;
+  --line: #d9dfd2;
+  --accent: #59a876;
+  --accent-strong: #288f73;
+  --shadow: rgba(39, 54, 36, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1f3d;
+    --panel: rgba(18, 34, 60, 0.86);
+    --panel-solid: #142545;
+    --text: #edf5ff;
+    --muted: #a9bbd3;
+    --line: #314866;
+    --accent: #7dc9ff;
+    --accent-strong: #8ed7ff;
+    --shadow: rgba(0, 0, 0, 0.28);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--line), transparent 82%) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--line), transparent 86%) 1px, transparent 1px),
+    var(--bg);
+  background-size: 28px 28px, 28px 28px, auto;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select,
+input[type="range"],
+input[type="checkbox"],
+.upload-card {
+  touch-action: manipulation;
+}
+
+.app-shell {
+  width: min(1480px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) 360px;
+  gap: 18px;
+  align-items: start;
+}
+
+.stage-panel,
+.control-panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 22px 70px var(--shadow);
+  backdrop-filter: blur(18px);
+  border-radius: 8px;
+}
+
+.stage-panel {
+  min-width: 0;
+  padding: 16px;
+}
+
+.stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+h2 {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+p,
+small {
+  color: var(--muted);
+}
+
+p {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.stage-actions,
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+  color: var(--text);
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+#downloadPng {
+  border-color: transparent;
+  background: var(--accent-strong);
+  color: #fff;
+}
+
+.canvas-host {
+  width: 100%;
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel-solid), transparent 28%);
+  padding: 12px;
+  overscroll-behavior: contain;
+}
+
+.canvas-host canvas {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: calc(100vh - 150px);
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 18px 58px var(--shadow);
+  touch-action: none;
+}
+
+.control-panel {
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  padding: 16px;
+}
+
+.control-group {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.control-group:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.compact-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.slider-grid {
+  gap: 14px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+label span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+  color: var(--text);
+  outline: none;
+}
+
+select {
+  min-height: 40px;
+  padding: 0 10px;
+}
+
+textarea {
+  min-height: 126px;
+  padding: 10px 12px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-strong);
+}
+
+.switch-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.switch-row label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-solid);
+  color: var(--text);
+}
+
+.upload-card {
+  min-height: 98px;
+  place-items: center;
+  text-align: center;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent), transparent 88%);
+  color: var(--text);
+  cursor: pointer;
+  padding: 16px;
+}
+
+.upload-card input {
+  display: none;
+}
+
+.upload-card span {
+  justify-content: center;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .control-panel {
+    position: static;
+    max-height: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .control-group {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .control-group:last-child {
+    grid-column: span 3;
+  }
+
+  .canvas-host canvas {
+    max-height: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .stage-panel,
+  .control-panel {
+    padding: 12px;
+  }
+
+  .stage-head {
+    display: grid;
+  }
+
+  .stage-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .control-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .control-group:last-child {
+    grid-column: auto;
+  }
+
+  .compact-grid,
+  .switch-row {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-host {
+    padding: 8px;
+  }
+
+  .canvas-host canvas {
+    max-width: 100%;
+  }
+}
